@@ -1,31 +1,27 @@
-// const person: {
-//   name: string;
-//   age: number;
-//   hobbies: string[];
-//   role: [number, string];
-// } = {
-//   name: 'yota',
-//   age: 30,
-//   hobbies: ['Sports', 'Cooking'],
-//   role: [2, 'author'],
-// };
+// Union
 
-const person = {
-  name: 'yota',
-  age: 30,
-  hobbies: ['Sports', 'Cooking'],
-  role: [2, 'author'],
-};
-
-// person.role.push('admin'); 許可される
-// person.role[1] = 10; 許可されない
-// person.role = [0, 'admin', 'user']; 許可されない
-
-let favoriteActivities: string[];
-favoriteActivities = ['Sports']
-
-console.log(person.name);
-
-for (const hobby of person.hobbies) {
-  console.log(hobby.toUpperCase());
+function combine(
+  input1: number | string,
+  input2: number | string,
+  resultConversion: "as-number" | "as-text",
+) {
+  let result;
+  if (
+    (typeof input1 === "number" && typeof input2 === "number") ||
+    resultConversion === "as-number"
+  ) {
+    result = +input1 + +input2;
+  } else {
+    result = input1.toString() + input2.toString();
+  }
+  return result;
 }
+
+const combinedAges = combine(20, 24, "as-number");
+console.log(combinedAges);
+
+const combinedStringAges = combine("20", "24", "as-number");
+console.log(combinedStringAges);
+
+const sample1 = combine("test", "kazumasa", "as-text");
+console.log(sample1);
